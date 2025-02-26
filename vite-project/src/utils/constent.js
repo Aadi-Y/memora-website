@@ -1,1 +1,1 @@
-export const Base_url = "memora-website-gules.vercel.app"
+export const Base_url = "memora-website-git-main-aadithyays-projects.vercel.app"
