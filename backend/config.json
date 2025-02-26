@@ -1,3 +1,3 @@
 {
-    "connectionString" : "mongodb://localhost:27017/notes-app"
+    "connectionString" : "mongodb+srv://memoraWebsite:memoraWebsite&2025@cluster0.gblnr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 }
