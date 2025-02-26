@@ -1,1 +1,1 @@
-export const Base_url = "http://localhost:8000"
+export const Base_url = "memora-website-gules.vercel.app"
