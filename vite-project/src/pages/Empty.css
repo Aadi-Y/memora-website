@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem; /* Ensures spacing on smaller screens */
+    text-align: center;
+}
+
+.image-container img {
+    height: 300px;
+    width: 300px;
+    max-width: 100%; /* Ensures the image scales properly on small screens */
+    border-radius: 10px; /* Adds a slight rounded effect */
+    object-fit: cover; /* Ensures the image maintains proportions */
+}
+
+h2 {
+    font-size: 20px;
+    color: hsl(0, 0%, 20%);
+    margin-top: 10px;
+}
+
+/* Tablet Screens (768px and below) */
+@media (max-width: 768px) {
+    .image-container img {
+        height: 250px;
+        width: 250px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+
+/* Mobile Screens (480px and below) */
+@media (max-width: 480px) {
+    .image-container img {
+        height: 200px;
+        width: 200px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .main-container {
+        padding: 0.5rem; /* Slightly reduces padding for smaller devices */
+    }
+}

@@ -1,0 +1,14 @@
+.text-container{
+    border: 1px solid black;
+    width: 22vh;
+    padding:.5rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    margin-left: 5px;
+
+}
+.text-container h1{
+    color: linear-gradient(135deg, #4CAF50, #45a049);
+}

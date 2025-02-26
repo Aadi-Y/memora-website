@@ -1,0 +1,11 @@
+.todo-container{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    border: 1px solid black;
+}
+button{
+    width: 100px;
+    padding: 1px;
+}

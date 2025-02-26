@@ -1,0 +1,9 @@
+.notes-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+div{
+    margin-top: 5px;
+}

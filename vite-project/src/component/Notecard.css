@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family:'Poppins',sans-serif;
+}
+
+.notecard{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 10px;
+}
+.notecard-container{
+    border: 1px solid black;
+    padding: .8rem;
+    width: 21rem;
+    margin: 1rem;
+    border-radius: 5px;
+    border: none;
+    background: hsl(0, 0%, 90%);
+    overflow: hidden;
+    height: 200px;
+}
+.notecard-container:hover{
+    box-shadow: 5px 10px 10px grey;
+    transition: all ease-in;
+    
+}
+.note-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+.note-header .note-pin-btn{
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+.note-header .note-pin-btn:hover{
+    cursor: pointer;
+}
+.note-header .note-title{
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+.note-header .note-date{
+    margin-bottom: 5px;
+}
+.note-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.note-footer .note-edit-btn{
+    opacity: .7;
+    margin-right: 7px;
+}
+.note-footer .note-delete-btn{
+    opacity: .7;
+}
+.note-footer .note-edit-btn:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.note-footer .note-delete-btn:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.note-body .note-content{
+    font-size: 20px;
+}
+.note-footer .note-tag{
+    font-size: 18px;
+    margin-top: 2px;
+}
+.note-footer .note-edit-btn,.note-delete-btn{
+    font-size: 18px;
+}
+

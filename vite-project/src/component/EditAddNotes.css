@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.editAddNotes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensures it fills the viewport */
+    /* padding: 1rem; */
+}
+
+.editAddNotes-form {
+    /* border: 1px solid black; */
+    /* padding: 1.5rem; */
+    width: 500px;
+    max-width: 100%; 
+    border-radius: 10px;
+    /* border: none; */
+    overflow-y: auto;
+    /* background: transparent;  */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  */
+    margin-bottom: 200px;
+}
+
+.editAddNotes-form .title-input,
+.editAddNotes-form textarea {
+    min-width: 100%;
+    border: none;
+    background: hsl(0, 0%, 95%);
+}
+
+.editAddNotes-form textarea {
+    height: 120px;
+    font-size: 18px;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    resize: vertical; /* Allows resizing but keeps it controlled */
+}
+
+.editAddNotes-form .add-btn1 {
+    min-width: 100%;
+    padding: 0.7rem;
+    border: none;
+    /* background: hsl(240, 100%, 50%); */
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+.editAddNotes-form label {
+    font-size: 20px;
+    opacity: 0.6;
+}
+
+.add-btn1:hover {
+    cursor: pointer;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.error-message-display {
+    color: red;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    .editAddNotes-form {
+        width: 90%; 
+        padding: 1rem;
+    }
+
+    .editAddNotes-form textarea {
+        font-size: 16px;
+    }
+
+    .editAddNotes-form .add-btn1 {
+        font-size: 18px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 400px) {
+    .editAddNotes-form {
+        width: 95%; /* Slightly larger for very small screens */
+        padding: 0.8rem;
+    }
+
+    .editAddNotes-form label,
+    .editAddNotes-form textarea,
+    .editAddNotes-form .add-btn1 {
+        font-size: 16px;
+    }
+}
