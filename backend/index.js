@@ -4,7 +4,7 @@ const cors = require("cors");
 const {authenticateToken} = require("./utilities.js");
 const config = require("./config.json");
 const mongoose = require("mongoose");
-const port = 8000;
+const port = 5000;
 const app = express();
 mongoose.connect(config.connectionString);
 const User = require("./models/userModel.js");

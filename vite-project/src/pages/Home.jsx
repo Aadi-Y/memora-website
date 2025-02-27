@@ -62,7 +62,7 @@ function Home() {
         params:{query}
       })
 
-      if(response.data.length <= 0){
+      if(response?.data.length <= 0){
         <NoSearch/>
       }
 
@@ -171,7 +171,7 @@ function Home() {
         <Navbar search = {Search} handleSearch = {handleSearchValue} handleClearSearchValue = {handleClearSearchValue}/>
         
         {
-          allNotes.length > 0 ? (<div className="notes-section">
+          allNotes?.length > 0 ? (<div className="notes-section">
             <div className="single-note">
               {allNotes.map((item) => (
                 <Notecard

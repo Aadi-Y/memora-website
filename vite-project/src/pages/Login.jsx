@@ -53,7 +53,7 @@ function Login(){
         
         catch(err){
             
-            if(err.response && err.response.data && err.response.data.message){
+            if(err.response){
                 setError(err.response.data.message);
             }
             else{

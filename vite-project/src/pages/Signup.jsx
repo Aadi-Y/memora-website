@@ -47,9 +47,6 @@ function Signup(){
                 
             });
 
-            console.log(response);
-            console.log(response.data);
-
             if(response.data && response.data.error){
                 setError(response.data.error.message);
             }
