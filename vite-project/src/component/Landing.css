@@ -1,245 +1,210 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Inter', sans-serif; /* Modern font */
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-  }
+/* src/pages/LandingPage.css */
 
-  .landing-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+/* --- Global Styles & Variables --- */
+:root {
+  --primary-color: #4a47a3;
+  --primary-color-dark: #3c3983;
+  --secondary-color: #f0f0f0;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --text-color-light: #666666;
+  --highlight-bg: #f7f7fc;
+  --border-color: #e0e0e0;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
 
-  .landing-header {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #4CAF50, #45a049); /* Gradient background */
-    color: white;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  }
-  
-  .landing-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-  
-  .landing-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 20px;
-  }
-  
-  .landing-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Space between buttons */
-  }
-  
-  .landing-controls button {
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #4CAF50;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
 
-  button Link{
-    text-decoration: none;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-  }
-  
-  .landing-controls button:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  /* Main Content */
-  .landing-main {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .landing-main p {
+/* --- Typography --- */
+h1, h2, h3 {
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.section__title {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.btn--primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.btn--primary:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+.btn--secondary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn--large {
+    padding: 16px 32px;
     font-size: 1.1rem;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
-  .landing-main span {
-    font-weight: bold;
-    color: #4CAF50;
-  }
-  
-  /* Purpose Section */
-  .landing-purpose {
-    margin-bottom: 40px;
-  }
-  
-  .landing-purpose h2 {
-    font-size: 2rem;
-    color: #4CAF50;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-  
-  .landing-purpose h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  
-  .landing-purpose p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Perfect For Section */
-  .landing-perfect-for {
-    margin-bottom: 40px;
-  }
-  
-  .landing-perfect-for h2 {
-    font-size: 2rem;
-    color: #4CAF50;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-  
-  .landing-perfect-for ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-  
-  .landing-perfect-for li {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  /* Get Started Section */
-  .landing-get-started {
-    margin-bottom: 40px;
-  }
-  
-  .landing-get-started h2 {
-    font-size: 2rem;
-    color: #4CAF50;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-  
-  .landing-get-started ol {
-    list-style-type: decimal;
-    margin-left: 20px;
-  }
-  
-  .landing-get-started li {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #4CAF50;
-    margin-bottom: 10px;
-  }
-  
-  .landing-get-started p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  /* Footer */
-  footer {
+}
+
+/* --- Hero Section --- */
+.landing__hero {
+  text-align: center;
+  padding: 8rem 0;
+  background-color: var(--background-color);
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  color: var(--text-color-light);
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* --- General Section Styling --- */
+.landing__section {
+  padding: 6rem 0;
+}
+.landing__section--highlight {
+  background-color: var(--highlight-bg);
+}
+
+/* --- Features & Use Cases Grids --- */
+.features-grid, .use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card, .use-case-card {
+  background-color: var(--background-color);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.feature-card__icon, .use-case-card__icon {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.feature-card__title, .use-case-card__title {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.feature-card__description, .use-case-card__description {
+  color: var(--text-color-light);
+  font-size: 0.95rem;
+}
+
+/* --- "Get Started" Steps --- */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.step__number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.step__title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+}
+
+.step__description {
+  margin: 0;
+  color: var(--text-color-light);
+}
+
+/* --- Call to Action (CTA) Section --- */
+.landing__cta {
     text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    border-radius: 10px;
-    margin-top: 40px;
+}
+.cta__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* --- Footer --- */
+.landing__footer {
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color-light);
+  font-size: 0.9rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2.5rem;
   }
-  
-  footer h2 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: white;
+  .section__title {
+    font-size: 1.8rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .landing-header h1 {
-      font-size: 2rem;
-    }
-  
-    .landing-header p {
-      font-size: 1rem;
-    }
-  
-    .landing-controls button {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-  
-    .landing-purpose h2,
-    .landing-perfect-for h2,
-    .landing-get-started h2 {
-      font-size: 1.8rem;
-    }
-  
-    .landing-purpose h3 {
-      font-size: 1.3rem;
-    }
-  
-    .landing-get-started li {
-      font-size: 1.1rem;
-    }
+  .landing__section {
+    padding: 4rem 0;
   }
-  
-  @media (max-width: 480px) {
-    .landing-header h1 {
-      font-size: 1.8rem;
-    }
-  
-    .landing-header p {
-      font-size: 0.9rem;
-    }
-  
-    .landing-controls {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    .landing-controls button {
-      width: 100%;
-    }
-  
-    .landing-purpose h2,
-    .landing-perfect-for h2,
-    .landing-get-started h2 {
-      font-size: 1.5rem;
-    }
-  
-    .landing-purpose h3 {
-      font-size: 1.2rem;
-    }
-  
-    .landing-get-started li {
-      font-size: 1rem;
-    }
+  .hero__actions {
+    flex-direction: column;
   }
+}
