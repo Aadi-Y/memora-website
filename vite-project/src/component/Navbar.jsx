@@ -1,10 +1,10 @@
 import "./Navbar.css";
 import ProfileInfo from "./ProfileInfo";
-import { useNavigate } from "react-router-dom";
-// import Search from './Search';
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
-import NavText from "./NavText";
+import { FiBookOpen } from "react-icons/fi";
+
 function Navbar({
   search: SearchComponent,
   handleSearch,
@@ -12,20 +12,20 @@ function Navbar({
 }) {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  function onLogout() {
-    navigate("/");
-    localStorage.removeItem("token");
 
+  function onLogout() {
+    localStorage.removeItem("token");
+    navigate("/");
   }
 
   async function getUser() {
-    const response = await axiosInstance.get("/get-user");
-    if (response.data && response.data.users) {
-      setEmail(response.data.users[0].email);
-      return;
-    }
-    if (response.data.error) {
-      console.log(response.data.message);
+    try {
+      const response = await axiosInstance.get("/get-user");
+      if (response.data && response.data.users) {
+        setEmail(response.data.users[0].email);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -34,21 +34,24 @@ function Navbar({
   }, []);
 
   return (
-    <>
-      <div className="navbar-container">
-        <div className="navbar-profileInfo-container">
-          <NavText className="navtext"/>
-          <ProfileInfo onLogout={onLogout} email={email} />
-        </div>
-        <div className="navbar-search-container">
-            <SearchComponent
-            handleSearch={handleSearch}
-            handleClearSearchValue={handleClearSearchValue}
-            />
-        </div>
-        
+    <nav className="dash-nav">
+      <div className="dash-nav__left">
+        <Link to="/dashboard" className="dash-nav__brand">
+          <FiBookOpen className="dash-nav__brand-icon" />
+          <span>Memora</span>
+        </Link>
       </div>
-    </>
+      <div className="dash-nav__center">
+        <SearchComponent
+          handleSearch={handleSearch}
+          handleClearSearchValue={handleClearSearchValue}
+        />
+      </div>
+      <div className="dash-nav__right">
+        <ProfileInfo onLogout={onLogout} email={email} />
+      </div>
+    </nav>
   );
 }
+
 export default Navbar;

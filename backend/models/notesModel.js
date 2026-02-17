@@ -14,6 +14,10 @@ const newNoteSchema = new noteSchema({
         type:[String],
         default:[]
     },
+    drawing:{
+        type:String,
+        default:""
+    },
     isPinned:{
         type:Boolean,
         default:false

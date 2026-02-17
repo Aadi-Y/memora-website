@@ -1,77 +1,123 @@
-.tags-container input{
-    background-color: hsl(0, 0%, 95%);
-    border: none;
-    margin-right: 10px;
+/* ── Tags Component ── */
+
+.tags-container {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
 }
-.tag-add-btn{
-    padding: .55rem;
-    margin-bottom: 10px;
-    border: none;
-    text-align: center;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    border-radius: 3px;
+
+.tags-container *,
+.tags-container *::before,
+.tags-container *::after {
+    box-sizing: border-box;
 }
-.tag-add{
-    font-size: 20px;
-    color: white;
-}
-.tag-add-btn:hover{
-    cursor: pointer;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-.input-and-addBtn{
-    display: flex;
-    width: 170px;
-}
-.tags-display-container{
-    font-size: 18px;
-    margin-bottom: 5px;
+
+.tags-display-container {
     display: flex;
     flex-wrap: wrap;
-}
-.single-tag{
-    border: 1px solid black;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    background-color: hsl(0, 0%, 40%);
-    color: white;
-    border-radius: 5px;
-    padding: 0.3rem;
-    margin-bottom: 10px;
-    height: 35px;
-    
-}
-.tag-close-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: transparent;
-    color: white;
-    font-size:20px;
-    height: 25px;
-    width: 25px;
-    margin-left: 10px;
-    border-radius: 50%;
-}
-.tag-close-btn:hover{
-    cursor: pointer;
-
-}
-.tags-display-container{
-    border: 1px solid black;
-    width: 100%;
-    height: 100px;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0.5rem;
+    background: #fafafa;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 0.6rem;
+    max-height: 90px;
     overflow-y: auto;
-    padding: .4rem;
-    background-color: hsl(0, 0%, 95%);
-    border: none;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    overflow-x: hidden;
+    transition: border-color 0.2s ease;
+    width: 100%;
+}
 
+.tags-display-container:focus-within {
+    border-color: #a5d6a7;
+}
+
+.single-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 3px 8px 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    height: 28px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tag-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #66bb6a;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tag-close-btn:hover {
+    background: #c8e6c9;
+    color: #1b5e20;
+}
+
+.input-and-addBtn {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.tag-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.88rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fafafa;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tag-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    background: #fff;
+}
+
+.tag-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.tag-add-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.tag-add {
+    font-size: 1.15rem;
+    color: white;
 }

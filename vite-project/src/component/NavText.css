@@ -1,14 +1,94 @@
-.text-container{
-    border: 1px solid black;
-    width: 22vh;
-    padding:.5rem;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-    border: none;
-    margin-left: 5px;
+/* ── Public Navbar ── */
 
+.public-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
 }
-.text-container h1{
-    color: linear-gradient(135deg, #4CAF50, #45a049);
+
+/* ── Brand ── */
+
+.public-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #1b5e20;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s ease;
+}
+
+.public-nav__brand:hover {
+    opacity: 0.8;
+}
+
+.public-nav__icon {
+    font-size: 1.5rem;
+    color: #43a047;
+}
+
+/* ── Nav links ── */
+
+.public-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.public-nav__link {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1.15rem;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    color: #424242;
+}
+
+.public-nav__link:hover {
+    background: #f1f8e9;
+    color: #2e7d32;
+}
+
+.public-nav__link--cta {
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.25);
+}
+
+.public-nav__link--cta:hover {
+    background: linear-gradient(135deg, #388e3c, #43a047);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .public-nav {
+        padding: 0.75rem 1rem;
+    }
+
+    .public-nav__brand {
+        font-size: 1.15rem;
+    }
+
+    .public-nav__link {
+        font-size: 0.82rem;
+        padding: 0.45rem 0.85rem;
+    }
 }

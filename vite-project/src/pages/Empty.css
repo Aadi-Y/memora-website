@@ -1,60 +1,59 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ── Empty State ── */
 
-.main-container {
-    min-height: 100vh;
+.empty-state {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 1rem; /* Ensures spacing on smaller screens */
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 4rem 1.5rem;
+    min-height: 60vh;
 }
 
-.image-container img {
-    height: 300px;
-    width: 300px;
-    max-width: 100%; /* Ensures the image scales properly on small screens */
-    border-radius: 10px; /* Adds a slight rounded effect */
-    object-fit: cover; /* Ensures the image maintains proportions */
+.empty-state__img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
 }
 
-h2 {
-    font-size: 20px;
-    color: hsl(0, 0%, 20%);
-    margin-top: 10px;
+.empty-state__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #424242;
+    margin: 0 0 0.5rem;
 }
 
-/* Tablet Screens (768px and below) */
-@media (max-width: 768px) {
-    .image-container img {
-        height: 250px;
-        width: 250px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
+.empty-state__text {
+    font-size: 0.92rem;
+    color: #9e9e9e;
+    max-width: 360px;
+    line-height: 1.6;
+    margin: 0;
 }
 
-/* Mobile Screens (480px and below) */
+.empty-state__icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
+    color: #43a047;
+    margin: 0 2px;
+}
+
 @media (max-width: 480px) {
-    .main-container{
-        justify-content: start;
-    }
-    .image-container img {
-        height: 200px;
-        width: 200px;
+    .empty-state {
+        padding: 3rem 1rem;
+        min-height: 50vh;
     }
 
-    h2 {
-        font-size: 16px;
+    .empty-state__img {
+        width: 160px;
+        height: 160px;
     }
 
-    .main-container {
-        padding: 0.5rem; /* Slightly reduces padding for smaller devices */
+    .empty-state__title {
+        font-size: 1.1rem;
     }
 }

@@ -7,8 +7,7 @@ import React from 'react';
 import { validateEmail } from '../utils/validate';
 import axiosInstance from '../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import {toast , ToastContainer} from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import toast from 'react-hot-toast';
 import NavText from '../component/NavText';
 
 function Signup(){
@@ -53,13 +52,8 @@ function Signup(){
 
             if(response.data && response.data.token){
                 localStorage.setItem("token",response.data.token);
-                toast.success(`${response.data.message}`,{
-                    autoClose:3000
-                });
-                setTimeout(()=>{
-                    navigate("/dashboard");
-                },3000)
-                
+                toast.success(response.data.message);
+                navigate("/dashboard");
             }
         }
         catch(err){
@@ -91,51 +85,60 @@ function Signup(){
 
     return( <>
                 <NavText/>
-                <div className="container1">
-                <div className="inside1">
-                    <form onSubmit={handleSubmit}>
-                        <h2 className='signup'>Signup</h2>
-                        <div className='input-email'>
-                            <input type="email" 
-                                   placeholder='Email'
-                                   onChange={handleEmail}
-                                   value={email} />
-                        </div>
-                        <div className="input-password">
-                            <input type={orgVisible ? "text" : "password"} 
-                                   placeholder='Create password'
-                                   onChange={handleOrgPassword}
-                                   value={orgPassword} />
-                                   {
-                                    orgVisible ? <AiOutlineEye className='eye-icon-signup' onClick={toggleVisibility1}/> : <AiOutlineEyeInvisible className='eye-icon-signup' onClick={toggleVisibility1}/>
-                                   }
-                        </div>
-                        <div className="input-confirmPassword">
-                            <input type={confirmVisible ? "text":"password"} 
-                                   placeholder='Confirm password'
-                                   onChange={handleConfirmPassword}
-                                   value={confirmPassword} />
-                                   {
-                                    confirmVisible ? <AiOutlineEye className='eye-icon-signup' onClick = {toggleVisibility2}/> : <AiOutlineEyeInvisible className='eye-icon-signup'
-                                    onClick=
-                                    {toggleVisibility2}
-                                    />
-                                   }
-                        </div>
-                        <p className="error-message">{error}</p>
-                        <button className='signup-btn' type='submit'>Signup</button>
-                        <p>Already have an account?<span><a href="/login">Login</a></span></p>
-                    </form>
-                    <div>
-                        <h2>Or</h2>
-                        <button className='google-btn'>
-                            <span><img src={googleImage} alt="" className='google-image'/></span>
-                            Signup with Google
-                        </button>
+                <div className="signup-page">
+                <div className="signup-card">
+                    <div className="signup-header">
+                        <h2>Create Account</h2>
+                        <p>Sign up to start organizing your notes</p>
                     </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="signup-email">Email</label>
+                            <div className="input-wrapper">
+                                <input id="signup-email"
+                                       type="email" 
+                                       placeholder='you@example.com'
+                                       onChange={handleEmail}
+                                       value={email} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="signup-password">Password</label>
+                            <div className="input-wrapper">
+                                <input id="signup-password"
+                                       type={orgVisible ? "text" : "password"} 
+                                       placeholder='Create a strong password'
+                                       onChange={handleOrgPassword}
+                                       value={orgPassword} />
+                                <span className="eye-toggle" onClick={toggleVisibility1}>
+                                    {orgVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="signup-confirm">Confirm Password</label>
+                            <div className="input-wrapper">
+                                <input id="signup-confirm"
+                                       type={confirmVisible ? "text":"password"} 
+                                       placeholder='Re-enter your password'
+                                       onChange={handleConfirmPassword}
+                                       value={confirmPassword} />
+                                <span className="eye-toggle" onClick={toggleVisibility2}>
+                                    {confirmVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                                </span>
+                            </div>
+                        </div>
+                        {error && <p className="error-msg">{error}</p>}
+                        <button className='signup-submit' type='submit'>Create Account</button>
+                        <p className="redirect">Already have an account?<a href="/login">Log in</a></p>
+                    </form>
+                    <div className="divider"><span>or</span></div>
+                    <button className='google-signup'>
+                        <img src={googleImage} alt="Google" />
+                        Continue with Google
+                    </button>
                 </div>
             </div>
-            <ToastContainer/>
             </>)
 }
 

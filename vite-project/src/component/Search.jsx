@@ -2,52 +2,48 @@ import './Search.css';
 import React from 'react';
 import { IoClose } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
-import {useState} from 'react';
-import axiosInstance from "../utils/axiosInstance";
+import { useState } from 'react';
 
+function Search({ handleSearch, handleClearSearchValue }) {
+    const [searchValue, setSearchValue] = useState("");
 
-function Search({handleSearch,handleClearSearchValue}){
-    const [searchValue,setSearchValue] = useState("");
-    
-    function handleValueChange(event){
+    function handleValueChange(event) {
         setSearchValue(event.target.value);
     }
-    
 
-    async function handleSearching(){
-        if(searchValue){
+    function handleKeyDown(event) {
+        if (event.key === 'Enter' && searchValue) {
             handleSearch(searchValue);
         }
     }
 
-    function clearSearch(){
-        setSearchValue("");
-        handleClearSearchValue();
-
+    function handleSearching() {
+        if (searchValue) {
+            handleSearch(searchValue);
+        }
     }
 
-    let searchLength = searchValue.length;
-    return( <> 
-                <div className="search-container">
-                    <div>
-                        <input 
-                        type="text"
-                        placeholder='Search here'
-                        value={searchValue}
-                        onChange={handleValueChange}
-                        />
-                    </div>
-                    <div className="search-controls">
-                    {
-                        searchLength >= 1 && <IoClose className='close-btn' onClick={clearSearch}/>
-                    }
-                    
-                    <IoMdSearch className='search-btn' onClick={handleSearching}/>
-                   
-                    </div>
-                    
-                </div>
-            </>);
+    function clearSearch() {
+        setSearchValue("");
+        handleClearSearchValue();
+    }
+
+    return (
+        <div className="search-bar">
+            <IoMdSearch className="search-bar__icon" onClick={handleSearching} />
+            <input
+                type="text"
+                className="search-bar__input"
+                placeholder="Search notes..."
+                value={searchValue}
+                onChange={handleValueChange}
+                onKeyDown={handleKeyDown}
+            />
+            {searchValue.length >= 1 && (
+                <IoClose className="search-bar__clear" onClick={clearSearch} />
+            )}
+        </div>
+    );
 }
 
 export default Search;

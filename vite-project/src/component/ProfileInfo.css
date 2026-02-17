@@ -1,45 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* ── Profile Info ── */
 
-*{
-    font-family:'Poppins',sans-serif;
-}
-
-.profile-container{
+.profile {
     display: flex;
-    flex-direction: column;
-
+    align-items: center;
+    gap: 10px;
 }
 
-.logout-btn button{
-    border: none;
-    background-color: white;
-    text-decoration: underline;
-}
-
-.logout-btn button:hover{
-    cursor: pointer;
-}
-
-.initial{
-    border: 1px solid black;
+.profile__avatar {
+    width: 36px;
+    height: 36px;
     border-radius: 10px;
-    padding: .4rem;
-    height: 40px;
-    width: 40px;
-    text-align: center;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-    border: none;
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    flex-shrink: 0;
+    user-select: none;
 }
 
-@media (max-width: 570px) {
-    .initial{
-        margin-right: 10px;
+.profile__logout {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #616161;
+    background: transparent;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile__logout:hover {
+    background: #ffebee;
+    border-color: #ef9a9a;
+    color: #c62828;
+}
+
+.profile__logout svg {
+    font-size: 1rem;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .profile__logout-text {
+        display: none;
     }
-    .profile-container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+
+    .profile__logout {
+        padding: 0.4rem;
+        border-radius: 8px;
+    }
+
+    .profile__avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
     }
 }

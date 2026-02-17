@@ -6,8 +6,7 @@ import { useState } from "react";
 import {Link,useNavigate} from "react-router-dom";
 import { validateEmail } from "../utils/validate";
 import axiosInstance from "../utils/axiosInstance";
-import {toast , ToastContainer} from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import toast from 'react-hot-toast';
 import NavText from "../component/NavText";
 
 function Login(){
@@ -41,12 +40,8 @@ function Login(){
 
             if(response.data && response.data.token){
                 localStorage.setItem("token",response.data.token)
-                toast.success(`${response.data.message}`,{
-                    autoClose:3000,
-                });
-                setTimeout(()=>{
-                    navigate("/dashboard")
-                },3000)
+                toast.success(response.data.message);
+                navigate("/dashboard");
                 
             }
         }
@@ -99,47 +94,48 @@ function Login(){
     
     return( <>
                 <NavText/>
-                <div className="container2">
-                    <div className="inside2">
-                        <div className="inside2.1">
-                            <h2 className="login">Login</h2>
-                            <form onSubmit={handleSubmit}>
-                                <div className="input-email">
-                                    <input type="email" 
-                                        placeholder="Email"
-                                        onChange={handleEmail}
-                                        value={email} />
-                                </div>
-                                <div className="input-password">
-                                    <input type={visible ? "text" : "password"}
-                                        placeholder="Password"
-                                        onChange={handlePassword}
-                                        value={password} 
-                                        />
-                                        {
-                                            visible? <AiOutlineEye className="eye-icon-login" onClick={toggleVisibility}/> :
-                                            <AiOutlineEyeInvisible className="eye-icon-login" onClick={toggleVisibility}/>
-                                        }
-                                    
-                                </div>
-                                <p className="error-message">{error}</p>
-                                <a href="">Forgot Password?</a>
-                                <div className="control">
-                                    <button className="login-btn" type="submit">Login</button>
-                                </div>
-                                <p>Don't have an account? <span><a href="/signup">Signup</a></span></p>
-                            </form>
-                            <div>
-                                <h3>Or</h3>
-                                <button className="google-btn">
-                                    <span><img src={googleImage}alt="" className="google-image" /></span>
-                                    Login with Google
-                                </button>
-                            </div>
+                <div className="login-page">
+                    <div className="login-card">
+                        <div className="login-header">
+                            <h2>Welcome Back</h2>
+                            <p>Log in to access your notes</p>
                         </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="login-email">Email</label>
+                                <div className="input-wrapper">
+                                    <input id="login-email"
+                                           type="email" 
+                                           placeholder="you@example.com"
+                                           onChange={handleEmail}
+                                           value={email} />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="login-password">Password</label>
+                                <div className="input-wrapper">
+                                    <input id="login-password"
+                                           type={visible ? "text" : "password"}
+                                           placeholder="Enter your password"
+                                           onChange={handlePassword}
+                                           value={password} />
+                                    <span className="eye-toggle" onClick={toggleVisibility}>
+                                        {visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                                    </span>
+                                </div>
+                            </div>
+                            {error && <p className="error-msg">{error}</p>}
+                            <a href="" className="forgot-link">Forgot Password?</a>
+                            <button className="login-submit" type="submit">Log In</button>
+                            <p className="redirect">Don't have an account?<a href="/signup">Sign up</a></p>
+                        </form>
+                        <div className="divider"><span>or</span></div>
+                        <button className="google-login">
+                            <img src={googleImage} alt="Google" />
+                            Continue with Google
+                        </button>
                     </div>
                 </div>
-                <ToastContainer/>
             </>)
 }
 

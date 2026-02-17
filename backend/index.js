@@ -10,7 +10,7 @@ mongoose.connect(config.connectionString);
 const User = require("./models/userModel.js");
 const Notes = require("./models/notesModel.js")
 const jwt = require("jsonwebtoken");
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 const bcrypt = require("bcrypt");
 
 
@@ -105,7 +105,7 @@ app.post("/login",async (req,res)=>{
 
 app.post("/add-notes",authenticateToken,async (req,res)=>{
     try{
-       const {title,content,tags} = req.body;
+       const {title,content,tags,drawing} = req.body;
        const {user} = req;
 
        if(!title && !content){
@@ -116,6 +116,7 @@ app.post("/add-notes",authenticateToken,async (req,res)=>{
         title,
         content,
         tags:tags || [],
+        drawing: drawing || "",
         userId: user.id
        })
 
@@ -136,7 +137,7 @@ app.post("/add-notes",authenticateToken,async (req,res)=>{
 
 app.put("/edit-note/:noteId",authenticateToken,async (req,res)=>{
     const noteId = req.params.noteId;
-    const {title,content,tags,isPinned} = req.body;
+    const {title,content,tags,isPinned,drawing} = req.body;
     const {user} = req;
 
     if(!title && !content && !tags){
@@ -153,6 +154,7 @@ app.put("/edit-note/:noteId",authenticateToken,async (req,res)=>{
         if(content) note.content = content;
         if(tags) note.tags = tags;
         if(isPinned) note.isPinned = isPinned;
+        if(drawing !== undefined) note.drawing = drawing;
 
         await note.save();
 
@@ -171,13 +173,23 @@ app.put("/edit-note/:noteId",authenticateToken,async (req,res)=>{
 
 app.get("/get-all-notes/",authenticateToken,async (req,res)=>{
     const {user} = req;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const skip = (page - 1) * limit;
 
     try{
-        const notes = await Notes.find({userId : user.id}).sort({isPinned:-1});
+        const totalNotes = await Notes.countDocuments({userId : user.id});
+        const notes = await Notes.find({userId : user.id})
+            .sort({isPinned:-1})
+            .skip(skip)
+            .limit(limit);
 
-        return res.status(201).json({
+        return res.status(200).json({
             error:false,
             notes,
+            currentPage: page,
+            totalPages: Math.ceil(totalNotes / limit),
+            totalNotes,
             message:"All notes are retrieved successfully"
         })
     }catch(err){
@@ -232,7 +244,7 @@ app.put("/edit-pinned/:noteId",authenticateToken,async (req,res)=>{
             })
         }
 
-        note.isPinned = isPinned || false;
+        note.isPinned = isPinned;
         await note.save();
 
         return res.status(200).json({
@@ -289,18 +301,30 @@ app.get("/search-notes",authenticateToken,async (req,res)=>{
         })
     }
 
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const skip = (page - 1) * limit;
+
     try{
-        const matchingNotes = await Notes.find({
+        const filter = {
             userId : user.id,
             $or:[
                 {title : {$regex : new RegExp(query,"i")}},
                 {content : {$regex : new RegExp(query,"i")}},
             ]
-        })
+        };
+        const totalNotes = await Notes.countDocuments(filter);
+        const matchingNotes = await Notes.find(filter)
+            .sort({isPinned:-1})
+            .skip(skip)
+            .limit(limit);
 
         res.status(200).json({
             error:false,
             matchingNotes,
+            currentPage: page,
+            totalPages: Math.ceil(totalNotes / limit),
+            totalNotes,
             message:"The note that matches for the search query"
         })
 

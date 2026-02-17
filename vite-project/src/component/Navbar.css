@@ -1,41 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:'Poppins',sans-serif;
-}
-.navbar-container{
-    /* border: 1px solid hsla(0, 3%, 8%, 0.541); */
-    border-bottom: 2px solid grey;
-    border-radius: 3px;
+/* ── Dashboard Navbar ── */
+
+.dash-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
-    padding: .2rem;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
+    gap: 1rem;
+    padding: 0.65rem 1.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: 'Poppins', sans-serif;
 }
-.navbar-profileInfo-container{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 20px;
+
+/* ── Left: Brand ── */
+
+.dash-nav__left {
+    flex-shrink: 0;
 }
-.navbar-search-container,.navbar-profileInfo-container{
+
+.dash-nav__brand {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #1b5e20;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s ease;
+}
+
+.dash-nav__brand:hover {
+    opacity: 0.75;
+}
+
+.dash-nav__brand-icon {
+    font-size: 1.35rem;
+    color: #43a047;
+}
+
+/* ── Center: Search ── */
+
+.dash-nav__center {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 auto;
 }
 
-@media (max-width: 570px) {
-    .navbar-container{
-        display: flex;
-        justify-content: unset;
-        align-items: unset;
-        flex-direction: column;
-    }
-    .navbar-profileInfo-container{
-        display: flex;
-        justify-content: space-between;
+/* ── Right: Profile ── */
+
+.dash-nav__right {
+    flex-shrink: 0;
+}
+
+/* ── Responsive: Tablet ── */
+
+@media (max-width: 768px) {
+    .dash-nav {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+        gap: 0.6rem;
     }
 
+    .dash-nav__left {
+        order: 1;
+    }
+
+    .dash-nav__right {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .dash-nav__center {
+        order: 3;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* ── Responsive: Mobile ── */
+
+@media (max-width: 480px) {
+    .dash-nav {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .dash-nav__brand {
+        font-size: 1.05rem;
+    }
+
+    .dash-nav__brand-icon {
+        font-size: 1.15rem;
+    }
 }

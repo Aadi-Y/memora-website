@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* ── Pagination Container ── */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 1.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+/* ── Page Buttons ── */
+
+.pagination__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #424242;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination__btn:hover:not(:disabled):not(.pagination__btn--active) {
+    background: #f1f8e9;
+    border-color: #a5d6a7;
+    color: #2e7d32;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.12);
+}
+
+/* ── Active Page ── */
+
+.pagination__btn--active {
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 3px 12px rgba(76, 175, 80, 0.3);
+    cursor: default;
+}
+
+/* ── Arrow Buttons ── */
+
+.pagination__btn--arrow {
+    font-size: 1.1rem;
+}
+
+.pagination__btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ── Dots ── */
+
+.pagination__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 36px;
+    font-size: 0.9rem;
+    color: #9e9e9e;
+    letter-spacing: 2px;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .pagination {
+        gap: 4px;
+        padding: 1rem 0.5rem;
+    }
+
+    .pagination__btn {
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.82rem;
+        border-radius: 8px;
+    }
+
+    .pagination__btn--arrow {
+        font-size: 1rem;
+    }
+}

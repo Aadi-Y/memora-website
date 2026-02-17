@@ -1,39 +1,20 @@
 import './ProfileInfo.css';
-import {useState,useEffect} from "react";
-import axiosInstance from "../utils/axiosInstance";
-function ProfileInfo({onLogout,email}){
-    async function getUserInfo(){
-        try{
-            const response = await axiosInstance.get("/get-user");
+import { FiLogOut } from 'react-icons/fi';
 
-            if(response.data && response.data.users){
-                setEmail(response.data.users[0].email)
-            }
-            else{
-                setEmail('G');
-            }
-        }
-        catch(err){
-            if(err.response && err.response.data){
-                console.log(err);
-            }
-            
-        }
-    }
+function ProfileInfo({ onLogout, email }) {
+    const initial = email ? email.charAt(0).toUpperCase() : "?";
 
-
-    const initial = email ? email.split('')[0].toUpperCase() : "G";
-    
-    return( <>
-                <div className="profile-container">
-                    <div className="initial">
-                        {initial}
-                    </div>
-                    <div className="logout-btn">
-                        <button onClick={onLogout}>Logout</button>
-                    </div>
-                </div>
-            </>)
+    return (
+        <div className="profile">
+            <div className="profile__avatar" title={email}>
+                {initial}
+            </div>
+            <button className="profile__logout" onClick={onLogout} title="Logout">
+                <FiLogOut />
+                <span className="profile__logout-text">Logout</span>
+            </button>
+        </div>
+    );
 }
 
 export default ProfileInfo;

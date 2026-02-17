@@ -1,98 +1,219 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* ── Edit/Add Notes Form ── */
 
-* {
+.ean {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-.editAddNotes-container {
+.ean *,
+.ean *::before,
+.ean *::after {
+    box-sizing: border-box;
+}
+
+/* ── Header row ── */
+
+.ean__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1.5px solid #e8f5e9;
+}
+
+.ean__heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1b5e20;
+    margin: 0;
+}
+
+.ean__close {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ensures it fills the viewport */
-    /* padding: 1rem; */
-}
-
-.editAddNotes-form {
-    /* border: 1px solid black; */
-    /* padding: 1.5rem; */
-    width: 500px;
-    max-width: 100%; 
-    border-radius: 10px;
-    /* border: none; */
-    overflow-y: auto;
-    /* background: transparent;  */
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  */
-    margin-bottom: 200px;
-}
-
-.editAddNotes-form .title-input,
-.editAddNotes-form textarea {
-    min-width: 100%;
+    width: 32px;
+    height: 32px;
     border: none;
-    background: hsl(0, 0%, 95%);
-}
-
-.editAddNotes-form textarea {
-    height: 120px;
-    font-size: 18px;
-    outline: none;
-    padding: 0.5rem;
-    border-radius: 5px;
-    resize: vertical; /* Allows resizing but keeps it controlled */
-}
-
-.editAddNotes-form .add-btn1 {
-    min-width: 100%;
-    padding: 0.7rem;
-    border: none;
-    /* background: hsl(240, 100%, 50%); */
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    border-radius: 5px;
-    color: white;
-    font-size: 20px;
-    transition: background 0.3s ease-in-out;
-}
-
-.editAddNotes-form label {
-    font-size: 20px;
-    opacity: 0.6;
-}
-
-.add-btn1:hover {
+    background: #f5f5f5;
+    border-radius: 50%;
     cursor: pointer;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: #9e9e9e;
+    font-size: 1.15rem;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
 }
 
-.error-message-display {
-    color: red;
-    margin-bottom: 5px;
+.ean__close:hover {
+    background: #ffebee;
+    color: #d32f2f;
+    transform: scale(1.08);
 }
 
-@media (max-width: 600px) {
-    .editAddNotes-form {
-        width: 90%; 
-        padding: 1rem;
-    }
+/* ── Form group ── */
 
-    .editAddNotes-form textarea {
-        font-size: 16px;
-    }
-
-    .editAddNotes-form .add-btn1 {
-        font-size: 18px;
-    }
+.ean__group {
+    margin-bottom: 1.1rem;
 }
 
-/* Extra Small Devices */
-@media (max-width: 400px) {
-    .editAddNotes-form {
-        width: 95%; /* Slightly larger for very small screens */
-        padding: 0.8rem;
+.ean__label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #757575;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+}
+
+.ean__input {
+    width: 100%;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.92rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fafafa;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.ean__input:focus {
+    border-color: #4CAF50;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.ean__textarea {
+    width: 100%;
+    min-height: 130px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.92rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fafafa;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.ean__textarea:focus {
+    border-color: #4CAF50;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* ── Error ── */
+
+.ean__error {
+    color: #d32f2f;
+    font-size: 0.82rem;
+    text-align: center;
+    margin: 0.4rem 0;
+    background: #fff5f5;
+    padding: 0.45rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ffcdd2;
+}
+
+/* ── Submit button ── */
+
+.ean__submit {
+    width: 100%;
+    padding: 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #43a047, #66bb6a);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 0.6rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 3px 12px rgba(76, 175, 80, 0.25);
+}
+
+/* ── Canvas toggle / header ── */
+
+.ean__canvas-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #43a047;
+    background: #f1f8e9;
+    border: 1.5px dashed #a5d6a7;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.ean__canvas-toggle:hover {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+    transform: translateY(-1px);
+}
+
+.ean__canvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+}
+
+.ean__canvas-hide {
+    font-size: 0.72rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #d32f2f;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.ean__canvas-hide:hover {
+    background: #ffebee;
+}
+
+.ean__submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(76, 175, 80, 0.35);
+    background: linear-gradient(135deg, #388e3c, #43a047);
+}
+
+.ean__submit:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+    .ean__input,
+    .ean__textarea {
+        font-size: 0.88rem;
+        padding: 0.6rem 0.75rem;
     }
 
-    .editAddNotes-form label,
-    .editAddNotes-form textarea,
-    .editAddNotes-form .add-btn1 {
-        font-size: 16px;
+    .ean__submit {
+        font-size: 0.9rem;
     }
 }

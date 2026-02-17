@@ -1,79 +1,173 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* ── Note Card ── */
 
-*{
-    font-family:'Poppins',sans-serif;
-}
-
-.notecard{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap: 10px;
-}
-.notecard-container{
-    border: 1px solid black;
-    padding: .8rem;
-    width: 21rem;
-    margin: 1rem;
-    border-radius: 5px;
-    border: none;
-    background: hsl(0, 0%, 90%);
-    overflow: hidden;
-    height: 200px;
-}
-.notecard-container:hover{
-    box-shadow: 5px 10px 10px grey;
-    transition: all ease-in;
-    
-}
-.note-header{
+.nc {
+    background: linear-gradient(135deg, #f1f8e9 0%, #ffffff 40%);
+    border: 1px solid #a5d6a7;
+    border-radius: 14px;
+    padding: 1.2rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+    cursor: default;
+    break-inside: avoid;
+    margin-bottom: 1.2rem;
+}
+
+.nc:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+    border-color: #c8e6c9;
+    transform: translateY(-2px);
+}
+
+/* ── Pinned state ── */
+
+.nc--pinned {
+    border-color: #f48fb1;
+    background: linear-gradient(135deg, #fce4ec 0%, #ffffff 50%);
+}
+
+.nc--pinned:hover {
+    border-color: #66bb6a;
+}
+
+/* ── Header ── */
+
+.nc__header {
+    display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
+    gap: 8px;
 }
-.note-header .note-pin-btn{
-    font-size: 18px;
-    font-weight: bold;
-    
+
+.nc__meta {
+    min-width: 0;
 }
-.note-header .note-pin-btn:hover{
+
+.nc__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212121;
+    margin: 0 0 2px;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.nc__date {
+    font-size: 0.75rem;
+    color: #9e9e9e;
+    font-weight: 400;
+}
+
+/* ── Pin button ── */
+
+.nc__pin {
+    background: none;
+    border: none;
+    font-size: 1.15rem;
+    color: #bdbdbd;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nc__pin:hover {
+    color: #43a047;
+    background: #e8f5e9;
+}
+
+.nc__pin--active {
+    color: #43a047;
+}
+
+/* ── Body ── */
+
+.nc__body {
+    flex: 1;
     cursor: pointer;
 }
-.note-header .note-title{
-    text-decoration: underline;
-    margin-bottom: 5px;
+
+.nc__drawing {
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    background: #fafafa;
 }
-.note-header .note-date{
-    margin-bottom: 5px;
+
+.nc__drawing-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
 }
-.note-footer{
+
+.nc__content {
+    font-size: 0.88rem;
+    color: #616161;
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ── Footer ── */
+
+.nc__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f5f5f5;
 }
-.note-footer .note-edit-btn{
-    opacity: .7;
-    margin-right: 7px;
+
+.nc__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
 }
-.note-footer .note-delete-btn{
-    opacity: .7;
+
+.nc__tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #43a047;
+    background: #e8f5e9;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
 }
-.note-footer .note-edit-btn:hover{
-    opacity: 1;
+
+.nc__actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.nc__action {
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    padding: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    color: #bdbdbd;
+    transition: color 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
 }
-.note-footer .note-delete-btn:hover{
-    opacity: 1;
-    cursor: pointer;
+
+.nc__action--edit:hover {
+    color: #1976d2;
+    background: #e3f2fd;
 }
-.note-body .note-content{
-    font-size: 20px;
-}
-.note-footer .note-tag{
-    font-size: 18px;
-    margin-top: 2px;
-}
-.note-footer .note-edit-btn,.note-delete-btn{
-    font-size: 18px;
+
+.nc__action--delete:hover {
+    color: #d32f2f;
+    background: #ffebee;
 }
 
