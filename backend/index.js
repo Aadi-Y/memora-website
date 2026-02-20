@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const config = require("./config.json");
-const mongoose = require("mongoose");
+const { connectToDatabase } = require("./database/database.js");
 
 const authRoutes = require("./routes/authRoutes.js");
 const notesRoutes = require("./routes/notesRoutes.js");
@@ -11,10 +11,6 @@ const notesRoutes = require("./routes/notesRoutes.js");
 
 const port = 5000 || process.env.PORT;
 const app = express();
-
-mongoose.connect(config.connectionString);
-
-
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cors({ origin: "*" }));
@@ -27,5 +23,6 @@ app.use("/", authRoutes);
 app.use("/", notesRoutes);
 
 app.listen(port, () => {
+    connectToDatabase();
     console.log("The app is running in the port of : ", port);
 });
