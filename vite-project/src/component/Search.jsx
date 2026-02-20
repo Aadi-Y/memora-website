@@ -28,6 +28,18 @@ function Search({ handleSearch, handleClearSearchValue }) {
         handleClearSearchValue();
     }
 
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            if (searchValue) {
+                handleSearch(searchValue);
+            } else if (searchValue === "") {
+                handleClearSearchValue();
+            }
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [searchValue, handleSearch]);
+
     return (
         <div className="search-bar">
             <IoMdSearch className="search-bar__icon" onClick={handleSearching} />

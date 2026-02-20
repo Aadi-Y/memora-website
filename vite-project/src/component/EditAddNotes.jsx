@@ -1,65 +1,84 @@
 import Tags from '../inputs/Tags';
 import axiosInstance from '../utils/axiosInstance';
 import './EditAddNotes.css';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { IoClose } from 'react-icons/io5';
-import { FiEdit3 } from 'react-icons/fi';
-import DrawingCanvas from './DrawingCanvas';
 
-function EditAddNotes({noteData, type, getAllNotes, onClose}){
+
+function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
     const [title, setTitle] = useState(noteData?.title || "");
     const [content, setContent] = useState(noteData?.content || "");
     const [tags, setTags] = useState(noteData?.tags || []);
-    const [drawing, setDrawing] = useState(noteData?.drawing || "");
-    const [showCanvas, setShowCanvas] = useState(!!noteData?.drawing);
+
     const [error, setError] = useState("");
-    
-    async function addNotes(){
-        if(!title){
+
+    async function addNotes() {
+        if (!title) {
             setError("Please enter the title");
             return;
         }
-        if(!content){
+        if (!content) {
             setError("Please enter the content");
             return;
         }
         setError("");
 
-        try{
-            const response = await axiosInstance.post("/add-notes",{
-                title, content, tags, drawing
+        try {
+            const response = await axiosInstance.post("/add-notes", {
+                title, content, tags
             });
-            if(response.data && response.data.note){
+            if (response.data && response.data.note) {
                 getAllNotes();
                 onClose();
                 toast.success("Note added successfully");
             }
-        } catch(err){
-            if(err.response && err.response.data && err.response.data.message){
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
                 setError(err.response.data.message);
             }
         }
         getAllNotes();
     }
 
-    async function editNotes(){
-        try{
+    async function editNotes(isAutoSave = false) {
+        try {
             const noteId = noteData._id;
             const response = await axiosInstance.put("/edit-note/" + noteId, {
-                title, content, tags, drawing
+                title, content, tags
             });
-            if(response.data && response.data.note){
+            if (response.data && response.data.note) {
                 getAllNotes();
-                onClose();
-                toast.success("Note updated successfully");
+                // Check explicitly for boolean true to avoid treating event object as isAutoSave
+                if (isAutoSave !== true) {
+                    onClose();
+                    toast.success("Note updated successfully");
+                }
             }
-        } catch(err){
-            if(err.response && err.response.data && err.response.data.message){
-                setError(err.response.data.message);
+        } catch (err) {
+            if (isAutoSave !== true) {
+                if (err.response && err.response.data && err.response.data.message) {
+                    setError(err.response.data.message);
+                }
             }
         }
     }
+
+    const isFirstRender = useRef(true);
+    useEffect(() => {
+        if (type !== 'edit') return;
+
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            editNotes(true);
+        }, 1500); // 1.5 seconds for auto-save
+
+        return () => clearTimeout(timer);
+    }, [title, content, tags]);
 
     return (
         <div className="ean">
@@ -96,34 +115,7 @@ function EditAddNotes({noteData, type, getAllNotes, onClose}){
                 <Tags tags={tags} setTags={setTags} />
             </div>
 
-            <div className="ean__group">
-                {!showCanvas ? (
-                    <button
-                        type="button"
-                        className="ean__canvas-toggle"
-                        onClick={() => setShowCanvas(true)}
-                    >
-                        <FiEdit3 /> Add a diagram
-                    </button>
-                ) : (
-                    <>
-                        <div className="ean__canvas-header">
-                            <label className="ean__label">Diagram</label>
-                            <button
-                                type="button"
-                                className="ean__canvas-hide"
-                                onClick={() => { setShowCanvas(false); setDrawing(""); }}
-                            >
-                                Remove diagram
-                            </button>
-                        </div>
-                        <DrawingCanvas
-                            initialData={drawing}
-                            onChange={(data) => setDrawing(data)}
-                        />
-                    </>
-                )}
-            </div>
+
 
             {error && <p className="ean__error">{error}</p>}
 

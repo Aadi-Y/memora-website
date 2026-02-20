@@ -150,7 +150,7 @@ function Landing() {
             <h1 className="hero__title">{heroContent.title}</h1>
             <p className="hero__subtitle">{heroContent.subtitle}</p>
             <div className="hero__actions">
-              <Link to={heroContent.primaryAction.to} className="btn btn--primary btn--large">
+              <Link to={heroContent.primaryAction.to} className="btn btn--primary btn--large get-started">
                 {heroContent.primaryAction.text}
                 <FiArrowRight className="btn__icon" />
               </Link>

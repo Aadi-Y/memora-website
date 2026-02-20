@@ -2,37 +2,47 @@ const mongoose = require("mongoose");
 const noteSchema = mongoose.Schema;
 
 const newNoteSchema = new noteSchema({
-    title:{
-        type:String,
-        required:true
+    title: {
+        type: String,
+        required: true
     },
-    content:{
-        type:String,
-        required:true
+    content: {
+        type: String,
+        required: true
     },
-    tags:{
-        type:[String],
-        default:[]
+    tags: {
+        type: [String],
+        default: []
     },
-    drawing:{
-        type:String,
-        default:""
+    drawing: {
+        type: String,
+        default: ""
     },
-    isPinned:{
-        type:Boolean,
-        default:false
+    isPinned: {
+        type: Boolean,
+        default: false
     },
-    userId:{
-        type:mongoose.Schema.Types.ObjectId ,
-        required:true,
-        ref:"User"
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
 
     },
-    createdOn:{
-        type:Date,
+    createdOn: {
+        type: Date,
         default: new Date().getTime()
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    },
+    deletedOn: {
+        type: Date,
+        default: null
     }
-    
+
 })
 
-module.exports = mongoose.model("Notes",newNoteSchema);
+newNoteSchema.index({ title: "text", content: "text", tags: "text" });
+
+module.exports = mongoose.model("Notes", newNoteSchema);

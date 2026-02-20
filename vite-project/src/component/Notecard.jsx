@@ -2,9 +2,9 @@ import './Notecard.css';
 import { MdEdit, MdDelete } from "react-icons/md";
 import { VscPinned } from "react-icons/vsc";
 import moment from "moment";
-import ShapePreview from "./ShapePreview";
 
-function Notecard({ title, date, content, tags, onEdit, onDelete, isPinned, onPinNote, onView, drawing }) {
+
+function Notecard({ title, date, content, tags, onEdit, onDelete, isPinned, onPinNote, onView }) {
     return (
         <div className={`nc ${isPinned ? 'nc--pinned' : ''}`}>
             <div className="nc__header">
@@ -22,11 +22,7 @@ function Notecard({ title, date, content, tags, onEdit, onDelete, isPinned, onPi
             </div>
 
             <div className="nc__body" onClick={onView}>
-                {drawing && (
-                    <div className="nc__drawing">
-                        <ShapePreview data={drawing} maxHeight={140} />
-                    </div>
-                )}
+
                 <p className="nc__content">{content}</p>
             </div>
 
