@@ -9,7 +9,7 @@ const notesRoutes = require("./routes/notesRoutes.js");
 
 
 
-const port = 5000;
+const port = 5000 || process.env.PORT;
 const app = express();
 
 mongoose.connect(config.connectionString);
