@@ -7,8 +7,6 @@ const { connectToDatabase } = require("./database/database.js");
 const authRoutes = require("./routes/authRoutes.js");
 const notesRoutes = require("./routes/notesRoutes.js");
 
-
-
 const port = 5000 || process.env.PORT;
 const app = express();
 
