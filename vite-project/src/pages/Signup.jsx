@@ -69,8 +69,6 @@ function Signup() {
         } finally {
             setIsLoading(false);
         }
-
-
     }
     function handleEmail(event) {
         setEmail(event.target.value);
