@@ -4,6 +4,7 @@ import './EditAddNotes.css';
 import { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { IoClose } from 'react-icons/io5';
+import Spinner from './Spinner';
 
 
 function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
@@ -12,6 +13,7 @@ function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
     const [tags, setTags] = useState(noteData?.tags || []);
 
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     async function addNotes() {
         if (!title) {
@@ -23,6 +25,7 @@ function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
             return;
         }
         setError("");
+        setIsLoading(true);
 
         try {
             const response = await axiosInstance.post("/add-notes", {
@@ -37,11 +40,14 @@ function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
             if (err.response && err.response.data && err.response.data.message) {
                 setError(err.response.data.message);
             }
+        } finally {
+            setIsLoading(false);
         }
         getAllNotes();
     }
 
     async function editNotes(isAutoSave = false) {
+        if (isAutoSave !== true) setIsLoading(true);
         try {
             const noteId = noteData._id;
             const response = await axiosInstance.put("/edit-note/" + noteId, {
@@ -61,6 +67,8 @@ function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
                     setError(err.response.data.message);
                 }
             }
+        } finally {
+            if (isAutoSave !== true) setIsLoading(false);
         }
     }
 
@@ -122,8 +130,13 @@ function EditAddNotes({ noteData, type, getAllNotes, onClose }) {
             <button
                 className="ean__submit"
                 onClick={type === "edit" ? editNotes : addNotes}
+                disabled={isLoading}
             >
-                {type === "edit" ? "Update Note" : "Add Note"}
+                {isLoading ? (
+                    <><Spinner /> {type === "edit" ? "Updating..." : "Adding..."}</>
+                ) : (
+                    type === "edit" ? "Update Note" : "Add Note"
+                )}
             </button>
 
         </div>

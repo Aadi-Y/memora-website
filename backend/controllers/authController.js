@@ -27,7 +27,7 @@ async function signup(req, res) {
 
         const hashedPassword = await bcrypt.hash(orgPassword, 10);
         const newUser = await User.create({ email, orgPassword: hashedPassword });
-        const token = jwt.sign({ id: newUser._id, email: newUser.email }, "test@123", { expiresIn: "36000m" });
+        const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: "36000m" });
 
         return res.status(200).json({ message: "Registration successfully", email, token, user: newUser });
     } catch (err) {
@@ -60,7 +60,7 @@ async function login(req, res) {
 
         if (existingUser && isPasswordValid) {
             const user = { id: existingUser._id, email: existingUser.email };
-            const token = jwt.sign(user, "test@123", { expiresIn: "36000m" });
+            const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "36000m" });
             return res.status(200).json({ error: false, message: "Login successfull", user, token });
         } else {
             return res.status(400).json({ error: true, message: "Login failed" });
