@@ -115,4 +115,8 @@
         right: 20px;
         border-radius: 50%;
     }
+    
+    .home-container {
+        margin-top: 10px;
+    }
 }
